@@ -1,0 +1,41 @@
+DATA_SECURITY_COMPLIANCE_CHECK
+
+Objective:
+Assess whether the DPA contains adequate technical and organizational security measures. Determine if these measures comply with either ISO 27001 / SOC 2 (external benchmark) or the client’s internal information security baseline (internal benchmark).
+
+Instructions:
+You are reviewing the Vendor’s DPA. Answer the following control question based on decision logic and evidence from the DPA.
+
+1. SECURITY MEASURES
+
+Step 1: Is the Vendor certified under ISO 27001 or SOC 2?
+- [ ] Yes → Compare the list of Security Measures in the DPA with the required controls of ISO 27001 or SOC 2 (external benchmark)
+  - Are the measures from the DPA equivalent to the external benchmark?
+    - [ ] Yes → Confirm that this Control is Satisfied
+    - [ ] No → Switch to "No" for ISO/SOC certification → Proceed to Step 2
+
+- [ ] No → Compare the list of Security Measures in the DPA with the internal baseline (client’s in-house infosec benchmark)
+  - Are the measures from the DPA equivalent to the internal benchmark?
+    - [ ] Yes → Confirm that this Control is Satisfied
+    - [ ] No → Red Flag
+
+Supporting quote(s):
+- "[Insert direct quote(s) from the DPA listing the implemented security measures]"
+- "[Insert mention of ISO 27001 or SOC 2 certification, if stated]"
+
+Output Format:
+
+DATA SECURITY COMPLIANCE REPORT
+
+1. Security Measures:
+- ISO 27001 / SOC 2 Certified: [Yes / No]
+- Benchmark Used: [External / Internal]
+- Measures match benchmark: [Yes / No]
+- Control Status: [Satisfied / Red Flag]
+
+Supporting quote(s):
+- "[Insert clause(s) listing security measures]"
+- "[Insert any relevant mention of certification or fallback to internal requirements]"
+
+Notes / Justification:
+- [Summarize decision, including which benchmark was used and rationale for satisfaction or red flag]

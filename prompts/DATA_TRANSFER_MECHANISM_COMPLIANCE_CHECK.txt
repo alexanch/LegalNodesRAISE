@@ -1,0 +1,58 @@
+DATA TRANSFER MECHANISM COMPLIANCE CHECK (with Supporting Quotes)
+
+Objective:
+Determine whether personal data will be transferred outside the EU/EEA and, if so, whether an appropriate and GDPR-compliant data transfer mechanism is in place. Confirm whether the DPA reflects this correctly and quote exact language from the DPA to support your conclusions.
+
+Instructions:
+You are reviewing a Vendor’s DPA in the context of GDPR compliance. Assume our client is a Data Controller based in the EU.
+
+Use the jurisdiction of the Vendor’s legal entity and any externally provided information (e.g., DPF certification status) to follow the steps below. Use direct quotes from the DPA to support all conclusions.
+
+Step 1: Jurisdiction of Vendor
+- What is the jurisdiction of the Vendor's legal entity?
+  - [ ] Vendor is based in the EU or UK → Control is Satisfied → No further action
+  - [ ] Vendor is based outside the EU → Proceed to Step 2
+
+Step 2: Vendor is Based in the US
+- Is the Vendor certified under the EU-U.S. Data Privacy Framework (DPF)?
+  - [ ] Yes → Control is Satisfied → No further action
+  - [ ] No → Proceed to Step 3
+
+Step 3: Use of Standard Contractual Clauses (SCCs)
+- Determine the role of the Vendor:
+  - [ ] Processor only
+    - Does the DPA include SCCs using **Module 2** (Controller to Processor)?
+      - [ ] Yes → Control is Satisfied
+      - [ ] No → Red Flag: SCCs for Processor missing
+  - [ ] Processor + Controller
+    - Does the DPA include SCCs using **Module 1** (Controller to Controller) and **Module 2** (Controller to Processor)?
+      - [ ] Yes → Control is Satisfied
+      - [ ] No → Red Flag: SCCs for dual role missing or incomplete
+
+Support all findings with quotes from the DPA that reference:
+  - Data transfer mechanisms
+  - Application of SCCs (including referenced modules)
+  - Recognition or absence of DPF certification
+  - Clauses such as: “The parties agree to enter into the Standard Contractual Clauses...”, “Module 2 applies”, etc.
+
+Output Format: Compliance Report
+
+DATA TRANSFER MECHANISM COMPLIANCE REPORT
+
+Vendor Jurisdiction: [EU / UK / US / Other Non-EU]
+
+DPF Certification Status (if US): [Yes / No / Not applicable]
+- Source of verification: [e.g., DPF List — assumed external input]
+
+Vendor Role: [Processor only / Processor + Controller]
+
+SCC Inclusion in DPA:
+- SCC Module(s) included: [Module 1 / Module 2 / Both / None]
+- Supporting quote(s):
+  - "[Insert exact quote from DPA referencing SCCs]"
+  - "[Insert clause identifying applicable module(s)]"
+
+Control Status: [Satisfied / Red Flag]
+
+Notes / Justification:
+- [Concise explanation of how the conclusion was reached]

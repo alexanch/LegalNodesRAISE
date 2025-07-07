@@ -1,0 +1,105 @@
+FORMAL ARTICLE 28 COMPLIANCE CHECK (with Supporting Quotes)
+
+Objective:
+Verify whether the DPA includes all mandatory clauses required by Article 28 of the GDPR. Confirm that each clause is present and adequate, and quote exact language from the DPA to support your conclusions.
+
+Instructions:
+You are reviewing a Vendor’s DPA in the context of GDPR Article 28 compliance. Assume our client is a Data Controller based in the EU.
+
+Evaluate the DPA across each of the required elements below. For each sub-section, use direct quotes from the DPA to support your conclusions.
+
+1. TYPE OF DATA
+- Are the categories of Data Subjects identified in the DPA (e.g. employees, customers, users)?
+  - [ ] Yes → Proceed to next check
+  - [ ] No → Red Flag
+
+- Are the types of personal data identified in the DPA (e.g. name, address, passport ID)?
+  - [ ] Yes → Control is Satisfied
+  - [ ] No → Red Flag
+
+2. PURPOSE OF PROCESSING
+- Are the purposes of processing clearly stated in the DPA (e.g. providing CRM services, fraud prevention, KYC verification)?
+  - [ ] Yes → Control is Satisfied
+  - [ ] No → Red Flag
+
+3. DATA RETENTION
+- Does the DPA state that data is kept only during the term of cooperation and deleted or returned at the end?
+  - [ ] Yes → Control is Satisfied
+  - [ ] No → Proceed to next check
+
+- Does the DPA include a clause explaining the legal basis for retaining data beyond the term of the contract?
+  - [ ] Yes → Control is Satisfied
+  - [ ] No → Red Flag
+
+4. CONTROLLER’S RIGHTS
+- Does the DPA include a clause stating that the Controller’s instructions are legally binding on the Processor?
+  - [ ] Yes → Control is Satisfied
+  - [ ] No → Red Flag
+
+5. PROCESSOR’S OBLIGATIONS
+- Does the DPA include all of the following Processor obligations?
+  - [ ] Ensure confidentiality of personnel
+  - [ ] Assist Controller with data subject rights requests
+  - [ ] Assist with security and breach notification obligations
+  - [ ] Assist with DPIAs
+  - [ ] Allow audits and cooperate with the Controller
+
+  - [ ] All obligations present → Control is Satisfied
+  - [ ] One or more missing → Red Flag
+
+6. SUB-PROCESSORS
+- Does the DPA include a list of current Sub-Processors, or a link/reference to a source listing them?
+  - [ ] Yes → Proceed to next check
+  - [ ] No → Red Flag
+
+- Does the DPA include a clause requiring notification to the Client before engaging new Sub-Processors?
+  - [ ] Yes → Control is Satisfied
+  - [ ] No → Red Flag
+
+Output Format: Compliance Report
+
+FORMAL ARTICLE 28 COMPLIANCE REPORT
+
+1. Type of Data:
+- Data Subjects identified: [Yes / No]
+- Data types identified: [Yes / No]
+- Supporting quote(s):
+  - "[Insert DPA quote listing categories of data subjects]"
+  - "[Insert DPA quote listing types of personal data]"
+- Control Status: [Satisfied / Red Flag]
+
+2. Purpose of Processing:
+- Purpose(s) defined in DPA: [Yes / No]
+- Supporting quote(s):
+  - "[Insert exact clause describing processing purpose]"
+- Control Status: [Satisfied / Red Flag]
+
+3. Data Retention:
+- Clause limiting retention to contract term: [Yes / No]
+- Clause explaining legal basis for extended retention (if applicable): [Yes / No / N/A]
+- Supporting quote(s):
+  - "[Insert relevant DPA clause(s)]"
+- Control Status: [Satisfied / Red Flag]
+
+4. Controller’s Rights:
+- Binding instruction clause present: [Yes / No]
+- Supporting quote(s):
+  - "[Insert relevant clause confirming Controller's instructions are binding]"
+- Control Status: [Satisfied / Red Flag]
+
+5. Processor’s Obligations:
+- All required obligations included: [Yes / No]
+- Supporting quote(s):
+  - "[Insert clause(s) confirming Processor's obligations under GDPR]"
+- Control Status: [Satisfied / Red Flag]
+
+6. Sub-Processors:
+- Sub-processor list or reference present: [Yes / No]
+- Notification clause for new sub-processors: [Yes / No]
+- Supporting quote(s):
+  - "[Insert clause or reference to sub-processor list]"
+  - "[Insert notification commitment language]"
+- Control Status: [Satisfied / Red Flag]
+
+Notes / Justification:
+- [Concise summary of findings and rationale for each control’s status]

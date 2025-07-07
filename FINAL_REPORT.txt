@@ -1,0 +1,146 @@
+FINAL COMPLIANCE SUMMARY REPORT WITH PROOFS
+
+Objective:
+You have reviewed multiple compliance blocks of a Vendor’s DPA against GDPR requirements. For each block, detailed outputs include control statuses and supporting quotes (цитати). Your task is to produce a comprehensive final summary report that consolidates all findings, highlights controls satisfied with evidence, notes any red flags with explanations and quotes, and provides an overall compliance assessment with recommendations.
+
+Input:
+You will receive concatenated detailed outputs for the following blocks:
+1. Vendor Role  
+2. Data Transfer Mechanism  
+3. Formal Article 28 Compliance  
+4. Data Security (if provided)
+
+Instructions:
+For each block:  
+- List all controls and their status (Satisfied / Red Flag)  
+- For Satisfied controls, include the supporting quote(s) exactly as provided  
+- For any Red Flags, explain the issue and include relevant quote(s)  
+- Maintain clear separation between blocks  
+
+After reviewing all blocks, provide:  
+- Total number of controls reviewed  
+- Number of controls satisfied  
+- Number and summary of Red Flags  
+- Overall compliance assessment:
+  - Acceptable as-is  
+  - Acceptable with minor revisions  
+  - Needs major revision  
+
+- Detailed recommendations for addressing Red Flags or gaps
+
+Output Format: Extended Final Report
+
+DPA FINAL COMPLIANCE REPORT WITH PROOFS
+
+Vendor File: [Insert filename]
+
+1. Vendor Role Compliance
+- Controls Reviewed: [N]
+- Controls Satisfied: [N]
+- Controls with Red Flags: [N]
+
+Details:
+- Control: Vendor Classification  
+  Status: [Satisfied / Red Flag]  
+  Supporting quote(s):  
+    - "[Exact quote]"  
+    - "[Exact quote]"
+
+- Control: Controller Role Disclosure (if applicable)  
+  Status: [Satisfied / Red Flag / N/A]  
+  Supporting quote(s):  
+    - "[Exact quote]"
+
+- [Add more controls as applicable]
+
+---
+
+2. Data Transfer Mechanism Compliance
+- Controls Reviewed: [N]
+- Controls Satisfied: [N]
+- Controls with Red Flags: [N]
+
+Details:
+- Control: Vendor Jurisdiction  
+  Status: [Satisfied / Red Flag]  
+  Supporting quote(s):  
+    - "[Exact quote]"
+
+- Control: DPF Certification (if US-based)  
+  Status: [Satisfied / Red Flag / N/A]  
+  Supporting quote(s):  
+    - "[Exact quote or note about external verification]"
+
+- Control: SCC Inclusion and Modules  
+  Status: [Satisfied / Red Flag]  
+  Supporting quote(s):  
+    - "[Exact quote]"
+
+- [Add more controls as applicable]
+
+---
+
+3. Formal Article 28 Compliance
+- Controls Reviewed: [N]
+- Controls Satisfied: [N]
+- Controls with Red Flags: [N]
+
+Details:
+- Control: Type of Data (Subjects and Data Types)  
+  Status: [Satisfied / Red Flag]  
+  Supporting quote(s):  
+    - "[Exact quote]"  
+    - "[Exact quote]"
+
+- Control: Purpose of Processing  
+  Status: [Satisfied / Red Flag]  
+  Supporting quote(s):  
+    - "[Exact quote]"
+
+- Control: Data Retention  
+  Status: [Satisfied / Red Flag]  
+  Supporting quote(s):  
+    - "[Exact quote]"
+
+- Control: Controller’s Rights  
+  Status: [Satisfied / Red Flag]  
+  Supporting quote(s):  
+    - "[Exact quote]"
+
+- Control: Processor’s Obligations  
+  Status: [Satisfied / Red Flag]  
+  Supporting quote(s):  
+    - "[Exact quote]"
+
+- Control: Sub-Processors (List & Notification)  
+  Status: [Satisfied / Red Flag]  
+  Supporting quote(s):  
+    - "[Exact quote]"
+
+---
+
+4. Data Security Compliance (if provided)
+- Controls Reviewed: [N]
+- Controls Satisfied: [N]
+- Controls with Red Flags: [N]
+
+Details:
+- [List controls with statuses and quotes as above]
+
+---
+
+Summary
+- Total Controls Reviewed: [Total N]
+- Controls Satisfied: [Total Satisfied N]
+- Controls with Red Flags: [Total Red Flags N]
+
+Red Flag Summary:
+- [Brief explanation of each red flag with references to blocks and controls]
+
+Overall Compliance Assessment:
+- [Acceptable as-is / Acceptable with minor revisions / Needs major revision]
+
+Recommendations:
+- [List clear, actionable steps to address Red Flags or improve compliance]
+
+End of Report.

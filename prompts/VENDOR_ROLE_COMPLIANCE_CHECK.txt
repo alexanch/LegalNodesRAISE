@@ -1,0 +1,61 @@
+DATA_SECURITY_COMPLIANCE_CHECK
+
+Objective:  
+Evaluate whether the Vendor’s DPA includes sufficient technical and organizational security measures and defines clear liability provisions in the event of a personal data breach.
+
+Instructions:  
+You are reviewing the Vendor’s DPA. Assess the following controls:
+
+---
+
+1. SECURITY MEASURES
+
+Step 1: Is the Vendor certified under ISO 27001 or SOC 2?  
+- [ ] Yes → Compare the list of Security Measures in the DPA with the required controls under ISO 27001 or SOC 2 (external benchmark)  
+  - Are the measures from the DPA equivalent to or more comprehensive than those in ISO/SOC?  
+    - [ ] Yes → Confirm that this Control is Satisfied  
+    - [ ] No → Switch to “No” for certification and continue to internal benchmark
+
+- [ ] No → Compare the list of Security Measures in the DPA with the client’s internal information security baseline (internal benchmark)  
+  - Are the measures from the DPA equivalent to or more comprehensive than the internal baseline?  
+    - [ ] Yes → Confirm that this Control is Satisfied  
+    - [ ] No → Red Flag
+
+Supporting quote(s):  
+- "[Insert clause(s) from the DPA describing the implemented security measures]"  
+- "[Insert mention of ISO/SOC certification, if available]"
+
+---
+
+2. VENDOR’S LIABILITY IN CASE OF DATA BREACH
+
+Does the DPA include a clear clause outlining Vendor’s liability in the event of a personal data breach (e.g. financial liability, indemnification, or cost coverage)?  
+- [ ] Yes → Confirm that this Control is Satisfied  
+- [ ] No → Red Flag
+
+Supporting quote(s):  
+- "[Insert clause(s) from the DPA describing the Vendor’s obligations or liability for breach]"  
+- "[Insert any language about indemnity, damages, or limitations]"
+
+---
+
+Output Format:
+
+DATA SECURITY COMPLIANCE REPORT
+
+1. Security Measures:
+- ISO 27001 / SOC 2 Certified: [Yes / No]  
+- Benchmark Used: [External / Internal]  
+- Measures match benchmark: [Yes / No]  
+- Control Status: [Satisfied / Red Flag]  
+- Supporting quote(s):  
+  - "[Insert clause(s)]"
+
+2. Vendor’s Liability in Case of Data Breach:
+- Liability Clause Present: [Yes / No]  
+- Control Status: [Satisfied / Red Flag]  
+- Supporting quote(s):  
+  - "[Insert clause(s)]"
+
+Notes / Justification:
+- [Brief summary of how decisions were made for each sub-control]
