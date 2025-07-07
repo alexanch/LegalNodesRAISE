@@ -61,7 +61,7 @@ def process_comparison(customer_doc: str, external_doc: str, client) -> str:
     final_output = client.run_prompt(full_prompt)
 
     save_report(final_output)
-    convert_markdown_to_styled_html(final_output)
+    # convert_markdown_to_styled_html(final_output)
 
     return final_output
 
@@ -73,12 +73,12 @@ async def compare(request: CompareRequest):
         pdf1_path = download_pdf(request.pdf_url_1)
         pdf2_path = download_pdf(request.pdf_url_2)
 
-        print("Extracting text...")
+        print("\nExtracting text...")
         customer_doc = extract_text_from_pdf(pdf1_path)
         external_doc = extract_text_from_pdf(pdf2_path)
 
-        print("Customer tokens:", count_tokens_with_transformers(customer_doc))
-        print("External tokens:", count_tokens_with_transformers(external_doc))
+        # print("Customer tokens:", count_tokens_with_transformers(customer_doc))
+        # print("External tokens:", count_tokens_with_transformers(external_doc))
 
         if request.mode == "groq":
             groq_api_key = load_api_key("groq_api_key.txt")

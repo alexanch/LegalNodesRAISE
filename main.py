@@ -67,5 +67,8 @@ def main():
     save_report(final_output)
     convert_markdown_to_styled_html(final_output)
 
+    # # Save report
+    # save_report(output)
+
 if __name__ == "__main__":
     main()
