@@ -1,5 +1,7 @@
+import io
 import pdfplumber
 from transformers import AutoTokenizer
+from fastapi import HTTPException
 
 def load_api_key(filename):
     try:
@@ -106,3 +108,60 @@ def convert_markdown_to_styled_html(md_path, html_output_path="report.html", tit
     with open(html_output_path, "w", encoding="utf-8") as out_file:
         out_file.write(html_template)
     print(f"✅ Markdown converted and saved to: {html_output_path}")
+
+
+def download_pdf(url: str) -> str:
+    try:
+        os.makedirs("dpa_docs", exist_ok=True)
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        filename = f"dpa_docs/document_{timestamp}.pdf"
+        wget.download(url, out=filename)
+        return filename
+    except Exception as e:
+        raise Exception(f"Failed to download PDF from {url}: {e}")
+    
+    
+def extract_text_from_pdf(pdf_bytes_io: io.BytesIO) -> str:
+    try:
+        with pdfplumber.open(pdf_bytes_io) as pdf:
+            texts = [page.extract_text() or "" for page in pdf.pages]
+            return "\n".join(texts).strip()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to extract text from PDF: {e}")
+
+def get_client(mode: str):
+    groq_api_key = None
+    try:
+        with open("groq_api_key.txt", "r") as f:
+            groq_api_key = f.read().strip()
+    except FileNotFoundError:
+        pass
+
+    if mode == "groq" and groq_api_key:
+        return GroqClient(api_key=groq_api_key)
+    else:
+        # Use your custom API URL here
+        API_URL = 'http://95.179.250.102:3333/api/chat'
+        # If you have an API key for this, load it similarly
+        custom_api_key = None
+        try:
+            with open("api_key.txt", "r") as f:
+                custom_api_key = f.read().strip()
+        except FileNotFoundError:
+            pass
+        return CustomAPIClient(api_url=API_URL, api_key=custom_api_key)
+
+import os
+from datetime import datetime
+
+def save_report(content: str, directory: str = "./md") -> str:
+    os.makedirs(directory, exist_ok=True)
+    timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    filename = os.path.join(directory, f"compliance_report_{timestamp}.md")
+
+    with open(filename, "w", encoding="utf-8") as f:
+        f.write("# Compliance Review Report\n\n")
+        f.write(content)
+
+    print(f"Report saved to: {filename}")
+    return filename

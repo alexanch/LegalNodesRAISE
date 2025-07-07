@@ -9,7 +9,7 @@ def load_groq_api_key(filepath="groq_api_key.txt"):
         with open(filepath, "r") as f:
             return f.read().strip()
     except FileNotFoundError:
-        print(f"❌ Groq API key file '{filepath}' not found.")
+        print(f"Groq API key file '{filepath}' not found.")
         return None
 
 class GroqClient:
@@ -55,7 +55,7 @@ class CustomAPIClient:
             result = response.json()
             return result.get('message', {}).get('content', 'No content returned.')
         else:
-            raise RuntimeError(f"❌ API Error: {response.status_code}\n{response.text}")
+            raise RuntimeError(f"API Error: {response.status_code}\n{response.text}")
 
 
 # 🔧 Prompt builder function (can be moved to `prompts.py`)
@@ -100,7 +100,6 @@ def build_comparison_prompt(customer_doc, external_doc, prompt_path):
         f"--- Vendor's DPA ---\n{external_doc}"
     )
 
-
 # 📄 Save output to Markdown (can move to `reporting.py`)
 def save_report(content, prefix="compliance_report"):
     os.makedirs("md", exist_ok=True)
@@ -109,5 +108,5 @@ def save_report(content, prefix="compliance_report"):
     with open(filename, "w", encoding="utf-8") as f:
         f.write(f"# {prefix.replace('_', ' ').title()}\n\n")
         f.write(content)
-    print(f"\n✅ Report saved as '{filename}'")
+    print(f"\nReport saved as '{filename}'")
     return filename
