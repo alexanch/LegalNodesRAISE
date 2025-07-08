@@ -1,7 +1,84 @@
+import os
+import time
+import hmac
+import hashlib
+import httpx
+from dotenv import load_dotenv
+
+import os
+from datetime import datetime
+
+load_dotenv()
+
+SLACK_SIGNING_SECRET = os.getenv("SLACK_SIGNING_SECRET")
+SLACK_BOT_TOKEN = os.getenv("SLACK_BOT_TOKEN")
+
+bot_user_id = None  # Will be set on startup
+
+
+def verify_signature(body: bytes, timestamp: str, slack_signature: str) -> bool:
+    if timestamp is None or slack_signature is None:
+        print("Skipping signature verification (no headers present)")
+        return True  # Skip verification for local testing or curl
+    if abs(time.time() - int(timestamp)) > 60 * 5:
+        print("Request timestamp too old.")
+        return False
+    sig_basestring = f"v0:{timestamp}:{body.decode()}"
+    my_signature = "v0=" + hmac.new(
+        SLACK_SIGNING_SECRET.encode(), sig_basestring.encode(), hashlib.sha256
+    ).hexdigest()
+    is_valid = hmac.compare_digest(my_signature, slack_signature)
+    if not is_valid:
+        print(f"Invalid signature. Expected {my_signature} got {slack_signature}")
+    return is_valid
+
+
+async def send_message(channel: str, text: str):
+    url = "https://slack.com/api/chat.postMessage"
+    headers = {"Authorization": f"Bearer {SLACK_BOT_TOKEN}"}
+    json_data = {"channel": channel, "text": text}
+    async with httpx.AsyncClient() as client:
+        resp = await client.post(url, headers=headers, json=json_data)
+        data = resp.json()
+        print("Slack API response:", data)
+        if not data.get("ok"):
+            print("Failed to send message:", data.get("error"))
+
+
+async def fetch_bot_user_id():
+    global bot_user_id
+    url = "https://slack.com/api/auth.test"
+    headers = {"Authorization": f"Bearer {SLACK_BOT_TOKEN}"}
+    async with httpx.AsyncClient() as client:
+        resp = await client.post(url, headers=headers)
+        data = resp.json()
+        if data.get("ok"):
+            bot_user_id = data["user_id"]
+            print(f"Bot user ID: {bot_user_id}")
+        else:
+            print("Failed to fetch bot user ID:", data)
+
+
 import io
 import pdfplumber
 from transformers import AutoTokenizer
 from fastapi import HTTPException
+
+
+import os
+import time
+import hmac
+import hashlib
+import httpx
+from dotenv import load_dotenv
+
+load_dotenv()
+
+SLACK_SIGNING_SECRET = os.getenv("SLACK_SIGNING_SECRET")
+SLACK_BOT_TOKEN = os.getenv("SLACK_BOT_TOKEN")
+
+bot_user_id = None  # Will be set on startup
+
 
 def load_api_key(filename):
     try:
@@ -110,6 +187,37 @@ def convert_markdown_to_styled_html(md_path, html_output_path="report.html", tit
     print(f"✅ Markdown converted and saved to: {html_output_path}")
 
 
+# def download_pdf(url: str) -> str:
+#     try:
+#         os.makedirs("dpa_docs", exist_ok=True)
+#         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+#         filename = f"dpa_docs/document_{timestamp}.pdf"
+#         wget.download(url, out=filename)
+#         return filename
+#     except Exception as e:
+#         raise Exception(f"Failed to download PDF from {url}: {e}")
+    
+import requests
+
+# def download_pdf(url: str) -> str:
+#     os.makedirs("dpa_docs", exist_ok=True)
+#     filename = os.path.basename(url.split("id=")[-1]) + ".pdf"
+#     filepath = os.path.join("dpa_docs", filename)
+#     print(filepath)
+
+#     # If already downloaded, skip
+#     if os.path.exists(filepath):
+#         return filepath
+
+#     # Stream download
+#     with requests.get(url, stream=True) as r:
+#         r.raise_for_status()
+#         with open(filepath, 'wb') as f:
+#             for chunk in r.iter_content(chunk_size=8192):
+#                 f.write(chunk)
+
+#     return filepath
+
 def download_pdf(url: str) -> str:
     try:
         os.makedirs("dpa_docs", exist_ok=True)
@@ -119,7 +227,7 @@ def download_pdf(url: str) -> str:
         return filename
     except Exception as e:
         raise Exception(f"Failed to download PDF from {url}: {e}")
-    
+
     
 def extract_text_from_pdf(pdf_bytes_io: io.BytesIO) -> str:
     try:
@@ -151,8 +259,7 @@ def get_client(mode: str):
             pass
         return CustomAPIClient(api_url=API_URL, api_key=custom_api_key)
 
-import os
-from datetime import datetime
+
 
 def save_report(content: str, directory: str = "./md") -> str:
     os.makedirs(directory, exist_ok=True)
@@ -165,3 +272,49 @@ def save_report(content: str, directory: str = "./md") -> str:
 
     print(f"Report saved to: {filename}")
     return filename
+
+
+
+
+
+def verify_signature(body: bytes, timestamp: str, slack_signature: str) -> bool:
+    if timestamp is None or slack_signature is None:
+        print("Skipping signature verification (no headers present)")
+        return True  # Skip verification for local testing or curl
+    if abs(time.time() - int(timestamp)) > 60 * 5:
+        print("Request timestamp too old.")
+        return False
+    sig_basestring = f"v0:{timestamp}:{body.decode()}"
+    my_signature = "v0=" + hmac.new(
+        SLACK_SIGNING_SECRET.encode(), sig_basestring.encode(), hashlib.sha256
+    ).hexdigest()
+    is_valid = hmac.compare_digest(my_signature, slack_signature)
+    if not is_valid:
+        print(f"Invalid signature. Expected {my_signature} got {slack_signature}")
+    return is_valid
+
+
+async def send_message(channel: str, text: str):
+    url = "https://slack.com/api/chat.postMessage"
+    headers = {"Authorization": f"Bearer {SLACK_BOT_TOKEN}"}
+    json_data = {"channel": channel, "text": text}
+    async with httpx.AsyncClient() as client:
+        resp = await client.post(url, headers=headers, json=json_data)
+        data = resp.json()
+        print("Slack API response:", data)
+        if not data.get("ok"):
+            print("Failed to send message:", data.get("error"))
+
+
+async def fetch_bot_user_id():
+    global bot_user_id
+    url = "https://slack.com/api/auth.test"
+    headers = {"Authorization": f"Bearer {SLACK_BOT_TOKEN}"}
+    async with httpx.AsyncClient() as client:
+        resp = await client.post(url, headers=headers)
+        data = resp.json()
+        if data.get("ok"):
+            bot_user_id = data["user_id"]
+            print(f"Bot user ID: {bot_user_id}")
+        else:
+            print("Failed to fetch bot user ID:", data)
