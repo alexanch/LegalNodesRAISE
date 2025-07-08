@@ -318,3 +318,23 @@ async def fetch_bot_user_id():
             print(f"Bot user ID: {bot_user_id}")
         else:
             print("Failed to fetch bot user ID:", data)
+
+
+def beautify_output(text: str) -> str:
+    # Clean and split
+    text = text.strip()
+
+    # Ensure line breaks between logical sections
+    text = re.sub(r"(?<!\n)\n(?=\w)", "\n\n", text)  # add spacing between lines
+
+    # Apply basic bold formatting
+    text = re.sub(r"(DPA FINAL COMPLIANCE REPORT WITH PROOFS)", r"*📄 \1*", text)
+    text = re.sub(r"(Vendor File: .+)", r"*🔹 \1*", text)
+    text = re.sub(r"(\d+\.\s[A-Z].+)", r"\n*➤ \1*", text)  # numbered sections
+    text = re.sub(r"(?m)^- (Control: .+)", r"• _\1_")        # italic control titles
+    text = re.sub(r"(?m)^- (Status: .+)", r"    - *\1*")     # indent and bold statuses
+    text = re.sub(r"(?m)^- (Supporting quote\(s\):)", r"    - \1")  # indent quotes header
+    text = re.sub(r"(?m)^    - \"", r"> \"")  # quote blocks
+    text = re.sub(r"(Summary|Red Flag Summary|Overall Compliance Assessment|Recommendations|End of Report)", r"\n*🔸 \1*", text)
+
+    return text

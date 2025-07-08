@@ -12,7 +12,8 @@ from utils import (
     verify_signature,
     send_message,
     fetch_bot_user_id,
-    bot_user_id
+    bot_user_id,
+    beautify_output
 )
 
 from llm_client import GroqClient, CustomAPIClient
@@ -147,7 +148,8 @@ async def slack_events(request: Request):
                 external_doc = extract_text_from_pdf(pdf2_path)
                 client = GroqClient(api_key=load_api_key("groq_api_key.txt"))
                 final_output = process_comparison(customer_doc, external_doc, client)
-                await send_message(channel, f"📄 Here is the result:\n{final_output}")
+                beautified = beautify_output(final_output)
+                await send_message(channel, f"📄 Here is the result:\n{beautified}")
             except Exception as e:
                 await send_message(channel, f"❌ Error during comparison: {e}")
             return {"ok": True}

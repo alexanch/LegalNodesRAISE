@@ -32,8 +32,6 @@ Output Format: Extended Final Report
 
 DPA FINAL COMPLIANCE REPORT WITH PROOFS
 
-Vendor File: [Insert filename]
-
 1. Vendor Role Compliance
 - Controls Reviewed: [N]
 - Controls Satisfied: [N]
