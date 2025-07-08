@@ -3,6 +3,7 @@ import time
 import hmac
 import hashlib
 import httpx
+import re
 from dotenv import load_dotenv
 
 import os
@@ -320,21 +321,53 @@ async def fetch_bot_user_id():
             print("Failed to fetch bot user ID:", data)
 
 
-def beautify_output(text: str) -> str:
-    # Clean and split
-    text = text.strip()
+# def beautify_output(text: str, client) -> str:
+#     prompt = (
+#         "Please take the following legal compliance audit report and reformat it to be clean, well-structured, "
+#         "and suitable for sharing in a Slack message. Use clear sections, bold headings, and bullet points where appropriate.\n\n"
+#         f"{text}"
+#     )
+#     return client.run_prompt(prompt)
 
-    # Ensure line breaks between logical sections
-    text = re.sub(r"(?<!\n)\n(?=\w)", "\n\n", text)  # add spacing between lines
 
-    # Apply basic bold formatting
-    text = re.sub(r"(DPA FINAL COMPLIANCE REPORT WITH PROOFS)", r"*📄 \1*", text)
-    text = re.sub(r"(Vendor File: .+)", r"*🔹 \1*", text)
-    text = re.sub(r"(\d+\.\s[A-Z].+)", r"\n*➤ \1*", text)  # numbered sections
-    text = re.sub(r"(?m)^- (Control: .+)", r"• _\1_")        # italic control titles
-    text = re.sub(r"(?m)^- (Status: .+)", r"    - *\1*")     # indent and bold statuses
-    text = re.sub(r"(?m)^- (Supporting quote\(s\):)", r"    - \1")  # indent quotes header
-    text = re.sub(r"(?m)^    - \"", r"> \"")  # quote blocks
-    text = re.sub(r"(Summary|Red Flag Summary|Overall Compliance Assessment|Recommendations|End of Report)", r"\n*🔸 \1*", text)
+# def beautify_output(text: str, client) -> str:
+#     prompt = (
+#         "Take the following legal compliance report and reformat it in a style that works best for Slack messages:\n"
+#         "- Use *bold* for section headers\n"
+#         "- Use bullet points (- or •) for lists\n"
+#         "- Avoid large Markdown headers (like ### or ===)\n"
+#         "- Avoid code blocks\n"
+#         "- Ensure it's clean, readable, and Slack-compatible\n\n"
+#         "Report:\n\n"
+#         f"{text}"
+#     )
+#     return client.run_prompt(prompt)
 
-    return text
+# def beautify_output(text: str, client) -> str:
+#     prompt = (
+#         "Take the following legal compliance report and reformat it in a style perfect for Slack messages:\n"
+#         "- Use *bold* for section headers\n"
+#         "- Use bullet points (- or •) for lists\n"
+#         "- Add relevant emojis for sections, statuses, and highlights (e.g., 📊, ✅, 🚩, 🔒, 📝)\n"
+#         "- Avoid large Markdown headers (like ### or ===)\n"
+#         "- Avoid code blocks\n"
+#         "- Make it clean, readable, visually engaging, and Slack-compatible\n\n"
+#         "Report:\n\n"
+#         f"{text}"
+#     )
+#     return client.run_prompt(prompt)
+
+def beautify_output(text: str, client) -> str:
+    prompt = (
+        "Take the following legal compliance report and reformat it perfectly for Slack messages:\n"
+        "- Use *bold* for section headers (e.g. *Formal Article 28 Compliance*)\n"
+        "- Use _italic_ sparingly for emphasis where appropriate\n"
+        "- Remove redundant or nested markdown (e.g. replace '* **Text**' or '**_Text_**' with just '*Text*' or '_Text_')\n"
+        "- Use bullet points (- or •) for lists\n"
+        "- Add relevant emojis for sections, statuses, and highlights (e.g., 📊, ✅, 🚩, 🔒, 📝)\n"
+        "- Avoid large markdown headers (### or ===) and code blocks\n"
+        "- Ensure the text is clean, readable, visually engaging, and Slack-compatible\n\n"
+        "Report:\n\n"
+        f"{text}"
+    )
+    return client.run_prompt(prompt)
