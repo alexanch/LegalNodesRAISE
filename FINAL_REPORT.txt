@@ -1,7 +1,7 @@
 FINAL COMPLIANCE SUMMARY REPORT WITH PROOFS
 
 Objective:
-You have reviewed multiple compliance blocks of a Vendor’s DPA against GDPR requirements. For each block, detailed outputs include control statuses and supporting quotes (цитати). Your task is to produce a comprehensive final summary report that consolidates all findings, highlights controls satisfied with evidence, notes any red flags with explanations and quotes, and provides an overall compliance assessment with recommendations.
+You have reviewed multiple compliance blocks of a Vendor’s DPA against GDPR requirements. For each block, detailed outputs include control statuses and supporting quotes. Your task is to produce a comprehensive final summary report that consolidates all findings, highlights controls satisfied with evidence, notes any red flags with explanations and quotes, and provides an overall compliance assessment with recommendations.
 
 Input:
 You will receive concatenated detailed outputs for the following blocks:
